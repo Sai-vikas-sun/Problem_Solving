@@ -1,0 +1,27 @@
+class Solution {
+
+    public int computeAns(HashMap<Integer,Integer> h , int org){
+
+        if(!h.containsKey(org)){
+            return org;
+        }
+        return computeAns(h,org*2);
+    }
+    public int findFinalValue(int[] nums, int original) {
+
+        int n = nums.length;
+        HashMap<Integer,Integer> h = new HashMap<>();
+        boolean isFound = false;
+        for(int i=0;i<n;i++){
+            h.put(nums[i],i);
+            if(nums[i]==original){
+                isFound = true;
+            }
+        }
+        if(isFound==false){
+            return original;
+        }
+
+        return computeAns(h,original);
+    }
+}
